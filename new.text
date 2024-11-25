@@ -1,0 +1,185 @@
+ Stack(
+        // mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            color: Colors.red,
+          ),
+          Container(
+            // margin: EdgeInsets.symmetric(vertical: 00),
+            margin: EdgeInsets.only(top: 300),
+            color: Colors.blue,
+            height: 1000,
+          ),
+          Container(
+            margin: EdgeInsets.fromLTRB(20, 150, 20, 0),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12), color: Colors.white),
+            height: 300,
+            child: Column(
+              children: [
+                
+              ],
+            ),
+          )
+        ],
+      ),
+
+
+
+
+
+      -------------------
+       Expanded(flex: 5, child: Container()),
+          const SizedBox(
+            height: 20,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12),
+            child: TextField(
+              textAlign: TextAlign.left,
+              controller: name,
+              //ignore: prefer_const_constructors
+              decoration: InputDecoration(
+                border: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Color.fromARGB(255, 13, 33, 185),
+                  ),
+                ),
+                prefixIcon: Icon(
+                  Icons.person,
+                  color: Colors.blue,
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.blue, width: 2),
+                ),
+                labelText: "Full Name",
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 25,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12),
+            child: TextField(
+              textAlign: TextAlign.left,
+              controller: rolln,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Color.fromARGB(255, 13, 33, 185),
+                  ),
+                ),
+                prefixIcon: Icon(
+                  Icons.lock,
+                  color: Colors.blue,
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.blue, width: 2),
+                ),
+                labelText: "Roll Number",
+                hintText: "Eg:21csec14/21cvlc17",
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 30,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Row(
+                children: [
+                  Text('Year: '),
+                  DropdownButton<String>(
+                    dropdownColor: const Color.fromARGB(255, 0, 255, 21),
+                    //    isDense: true,
+                    isExpanded: false,
+                    iconEnabledColor: Color.fromARGB(255, 1, 213, 255),
+                    focusColor: const Color.fromARGB(255, 0, 17, 251),
+                    items: options.map((String dropDownStringItem) {
+                      return DropdownMenuItem<String>(
+                        value: dropDownStringItem,
+                        child: Text(
+                          dropDownStringItem,
+                          style: const TextStyle(
+                            //  color: Color.fromARGB(255, 226, 226, 226),
+                            // fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                          ),
+                        ),
+                      );
+                    }).toList(),
+                    onChanged: (newValueSelected) {
+                      setState(() {
+                        _currentItemSelected = newValueSelected!;
+                        rool = newValueSelected;
+
+                        ww = '';
+                        ww = _currentItemSelected + _currentItemSelected1;
+                      });
+                    },
+                    value: _currentItemSelected,
+                  ),
+                ],
+              ),
+              const SizedBox(
+                width: 35,
+              ),
+              Row(
+                children: [
+                  const Text('Div : '),
+                  DropdownButton<String>(
+                    dropdownColor: Color.fromARGB(255, 179, 202, 177),
+                    isDense: true,
+                    isExpanded: false,
+                    iconEnabledColor: Colors.blue[900],
+                    focusColor: Colors.blue[900],
+                    items: options1.map((String dropDownStringItem) {
+                      return DropdownMenuItem<String>(
+                        value: dropDownStringItem,
+                        child: Text(
+                          dropDownStringItem,
+                          style: const TextStyle(
+                            // color: Color.fromARGB(255, 0, 0, 0),
+                            // fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                          ),
+                        ),
+                      );
+                    }).toList(),
+                    onChanged: (newValueSelected1) {
+                      setState(() {
+                        _currentItemSelected1 = newValueSelected1!;
+                        rool1 = newValueSelected1;
+                        ww = '';
+                        ww = _currentItemSelected + _currentItemSelected1;
+                      });
+                    },
+                    value: _currentItemSelected1,
+                  ),
+                ],
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          MaterialButton(
+            color: Color.fromARGB(255, 2, 11, 128),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            onPressed: () {
+              ref.add({
+                'name': name.text,
+                'div': ww,
+                'roll': rolln.text,
+              });
+            },
+            child: const Text(
+              'ADD',
+              style: TextStyle(
+                color: Colors.white,
+              ),
+            ),
+          ),
